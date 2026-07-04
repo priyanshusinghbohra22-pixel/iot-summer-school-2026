@@ -1,21 +1,21 @@
-int count = 0;
+int potPin = A0;
 
 void setup() {
+
   pinMode(13, OUTPUT);
-  Serial.begin(115200);
+
 }
 
 void loop() {
 
-  digitalWrite(13, HIGH);
-  delay(500);
+  int value = analogRead(potPin);
 
-  digitalWrite(13, LOW);
-  delay(500);
+  int speed = map(value,0,1023,100,1000);
 
-  count++;
+  digitalWrite(13,HIGH);
+  delay(speed);
 
-  Serial.print("Blink Count: ");
-  Serial.println(count);
+  digitalWrite(13,LOW);
+  delay(speed);
 
 }
