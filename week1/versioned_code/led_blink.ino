@@ -1,3 +1,13 @@
+/*
+Author : Priyanshu Singh Bohra
+Date : 05 July 2026
+
+Description :
+LED blink program with serial monitoring
+and potentiometer based speed control.
+*/
+
+
 int potPin = A0;
 
 void setup() {
