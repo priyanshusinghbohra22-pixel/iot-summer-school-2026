@@ -1,5 +1,8 @@
 # LED Blink Project
 
+
+Tinkercad link -
+https://www.tinkercad.com/things/1iCxPJQKa3m-potentiometer?sharecode=aUW8fjXe2XdUgTx44Izi57uoDKwkyqhskV9TIUPJd3I
 ## Project Title
 
 Basic LED Blink using Arduino Uno
