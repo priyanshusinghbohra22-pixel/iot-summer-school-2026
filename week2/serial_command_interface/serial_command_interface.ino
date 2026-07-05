@@ -1,14 +1,17 @@
 /*
 Author: Priyanshu Singh Bohra
-Date-05-07-2026
 
-Commit 3
+Commit 4
 Features:
 LED_ON
 LED_OFF
 BLINK_X
 STATUS
 RESET
+
+Input Validation Added
+Unknown Command Detection
+Range Checking (1–9)
 */
 
 const int led = 2;
@@ -51,23 +54,54 @@ void loop() {
 
     else if (cmd.startsWith("BLINK_")) {
 
-      blinkCount = cmd.substring(6).toInt();
+      String num = cmd.substring(6);
 
-      if (blinkCount >= 1 && blinkCount <= 9) {
+      bool valid = true;
 
-        for (int i = 0; i < blinkCount; i++) {
+      for (int i = 0; i < num.length(); i++) {
 
-          digitalWrite(led, HIGH);
-          delay(500);
+        if (!isDigit(num[i])) {
 
-          digitalWrite(led, LOW);
-          delay(500);
+          valid = false;
+          break;
 
         }
 
-        Serial.print("Blinked ");
-        Serial.print(blinkCount);
-        Serial.println(" times");
+      }
+
+      if (valid) {
+
+        blinkCount = num.toInt();
+
+        if (blinkCount >= 1 && blinkCount <= 9) {
+
+          for (int i = 0; i < blinkCount; i++) {
+
+            digitalWrite(led, HIGH);
+            delay(500);
+
+            digitalWrite(led, LOW);
+            delay(500);
+
+          }
+
+          Serial.print("Blinked ");
+          Serial.print(blinkCount);
+          Serial.println(" times");
+
+        }
+
+        else {
+
+          Serial.println("Error: Blink value must be between 1 and 9");
+
+        }
+
+      }
+
+      else {
+
+        Serial.println("Error: Invalid BLINK command");
 
       }
 
@@ -100,6 +134,12 @@ void loop() {
       blinkCount = 0;
 
       Serial.println("Blink counter reset");
+
+    }
+
+    else {
+
+      Serial.println("Error: Unknown command");
 
     }
 
