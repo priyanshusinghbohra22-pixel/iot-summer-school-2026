@@ -1,1 +1,52 @@
+1. Digital Input
 
+Digital input pins are used to read two states: HIGH (1) or LOW (0). They are commonly used with switches, push buttons, and digital sensors.
+Example: Push button connected to pin 7.
+IoT Use Case: Smart doorbell system where a button press sends a notification.
+
+
+2. Digital Output
+
+Digital output pins are used to control devices by sending HIGH or LOW signals.
+Example: LED connected to pin 13.
+IoT Use Case: Turning ON/OFF a relay in a home automation system.
+
+
+
+3. Analog Input
+Analog input pins read continuously varying voltages using the ADC (Analog-to-Digital Converter). Arduino UNO has pins A0–A5.
+Example: Potentiometer connected to pin A0.
+IoT Use Case: Reading temperature, light intensity, or soil moisture sensors.
+
+
+
+4. PWM Output
+
+PWM (Pulse Width Modulation) pins generate a variable duty cycle signal to simulate analog output. On Arduino UNO, PWM pins are 3, 5, 6, 9, 10, and 11.
+Example: Controlling LED brightness.
+IoT Use Case: Motor speed control in smart robotics.
+
+
+
+5. I²C Pins
+
+I²C communication uses two pins:
+SDA → A4
+SCL → A5
+It allows multiple devices to communicate using only two wires.
+Example: OLED display.
+IoT Use Case: Connecting environmental sensors in a weather monitoring system.
+
+
+
+
+6. SPI Pins
+
+SPI communication pins on Arduino UNO are:
+MOSI → D11
+MISO → D12
+SCK → D13
+SS → D10
+SPI provides high-speed communication between devices.
+Example: SD card module.
+IoT Use Case: Data logging system storing sensor data on an SD card
