@@ -1,4 +1,4 @@
-# Module 2 – Embedded Systems Programming using ESP32
+# Module 2 – IoT Fundamentals & Arduino Programming
 
 This module focused on developing interactive embedded applications using ESP32 by combining digital I/O, PWM, serial communication, state machines, and user input devices.
 
