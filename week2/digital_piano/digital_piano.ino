@@ -2,8 +2,11 @@ const int BTN1 = 16;
 const int BTN2 = 17;
 const int BTN3 = 18;
 const int BTN4 = 21;
+const int BTN5 = 22;
 
 const int BUZZER = 25;
+
+bool major = true;
 
 void setup() {
 
@@ -11,6 +14,7 @@ void setup() {
   pinMode(BTN2, INPUT_PULLUP);
   pinMode(BTN3, INPUT_PULLUP);
   pinMode(BTN4, INPUT_PULLUP);
+  pinMode(BTN5, INPUT_PULLUP);
 
   Serial.begin(115200);
 
@@ -19,6 +23,27 @@ void setup() {
 }
 
 void loop() {
+
+  // Toggle Mode
+  if (digitalRead(BTN5) == LOW) {
+
+    major = !major;
+
+    if (major) {
+
+      Serial.println("MAJOR MODE");
+
+    }
+
+    else {
+
+      Serial.println("MINOR MODE");
+
+    }
+
+    delay(300);
+
+  }
 
   // SOL chord
   if (digitalRead(BTN1) == LOW &&
@@ -35,7 +60,7 @@ void loop() {
 
     Serial.println("DO");
 
-    ledcWriteTone(BUZZER, 262);
+    ledcWriteTone(BUZZER, major ? 262 : 247);
 
   }
 
@@ -44,7 +69,7 @@ void loop() {
 
     Serial.println("RE");
 
-    ledcWriteTone(BUZZER, 294);
+    ledcWriteTone(BUZZER, major ? 294 : 277);
 
   }
 
@@ -53,7 +78,7 @@ void loop() {
 
     Serial.println("MI");
 
-    ledcWriteTone(BUZZER, 330);
+    ledcWriteTone(BUZZER, major ? 330 : 311);
 
   }
 
@@ -62,11 +87,10 @@ void loop() {
 
     Serial.println("FA");
 
-    ledcWriteTone(BUZZER, 349);
+    ledcWriteTone(BUZZER, major ? 349 : 330);
 
   }
 
-  // No button pressed
   else {
 
     ledcWriteTone(BUZZER, 0);
