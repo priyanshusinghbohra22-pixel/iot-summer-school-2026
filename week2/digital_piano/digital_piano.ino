@@ -1,3 +1,29 @@
+/*
+Author: Priyanshu Singh Bohra
+Date: 05-07-2026
+
+Project: Digital Piano using ESP32
+
+Description:
+A digital piano implemented using ESP32, five push buttons,
+and a passive buzzer.
+
+Features:
+1. Four buttons generate Do, Re, Mi and Fa notes.
+2. Pressing Button1 and Button2 together plays Sol (392 Hz).
+3. A fifth button toggles between Major and Minor scales.
+4. Serial Monitor displays the currently played note and mode.
+
+Pin Configuration:
+BTN1   -> GPIO16
+BTN2   -> GPIO17
+BTN3   -> GPIO18
+BTN4   -> GPIO21
+BTN5   -> GPIO22
+BUZZER -> GPIO25
+*/
+
+
 const int BTN1 = 16;
 const int BTN2 = 17;
 const int BTN3 = 18;
