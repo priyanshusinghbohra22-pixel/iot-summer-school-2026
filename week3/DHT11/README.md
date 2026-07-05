@@ -4,6 +4,10 @@
 
 This project implements an Environmental Monitoring Station using an ESP32 and a DHT22 sensor. The system continuously measures temperature and humidity, converts temperature values from Celsius to Fahrenheit, and provides visual alerts using LEDs when environmental conditions exceed predefined thresholds.
 
+-## Libraries Used
+
+- DHT sensor library for ESPx v1.18.0
+
 ## Features
 
 * Temperature measurement in Celsius (°C)
