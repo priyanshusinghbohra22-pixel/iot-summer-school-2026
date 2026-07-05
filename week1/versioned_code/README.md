@@ -3,66 +3,95 @@
 Tinkercad link-
 https://www.tinkercad.com/things/1iCxPJQKa3m-potentiometer?sharecode=aUW8fjXe2XdUgTx44Izi57uoDKwkyqhskV9TIUPJd3I
 
+# LED Blink with Potentiometer Control
 
-## Description
-This project demonstrates LED blinking using an ESP32 with speed control through a potentiometer.
+## Project Description
+This project demonstrates LED blinking using Arduino with potentiometer-based speed control. The potentiometer adjusts the blinking interval dynamically.
 
-The potentiometer value is read using an analog input pin and mapped to control the LED blinking delay.
+---
 
-## Features
-- LED blinking
-- Potentiometer-based speed control
-- Adjustable blinking interval
-- Analog input processing
+## Hardware Required
 
-## Components Required
-- ESP32 Development Board
+- Arduino UNO / ESP32
 - LED
 - 220Ω Resistor
-- Potentiometer
+- Potentiometer (10kΩ)
 - Breadboard
 - Jumper Wires
+- USB Cable
 
-## Circuit Connections
+---
 
-| Component | ESP32 Pin |
-|-----------|-----------|
-| LED | GPIO13 |
-| Potentiometer Output | A0 |
-| Potentiometer VCC | 3.3V |
-| Potentiometer GND | GND |
+## Circuit Diagram Description
 
-## Working Principle
+Connections:
 
-1. The potentiometer value is read using `analogRead()`.
-2. The value is mapped between 100 ms and 1000 ms.
-3. The LED turns ON for the mapped delay period.
-4. The LED turns OFF for the same delay period.
-5. Changing the potentiometer position changes the blinking speed.
+LED Anode (+) → Pin 13 through 220Ω resistor
 
-## Code Functions Used
+LED Cathode (−) → GND
 
-### analogRead()
-Reads the potentiometer value.
+Potentiometer:
+- Left Pin → 5V
+- Middle Pin → A0
+- Right Pin → GND
 
-### map()
-Converts the ADC value into a delay range.
+---
 
-### digitalWrite()
-Controls LED state.
+## Uploading Code
 
-### delay()
-Creates the blinking interval.
+### Step 1
+Connect Arduino to PC using USB cable.
+
+### Step 2
+Open Arduino IDE.
+
+### Step 3
+Select the correct Board.
+
+Tools → Board → Arduino UNO
+
+### Step 4
+Select COM Port.
+
+Tools → Port → COMx
+
+### Step 5
+Open the sketch.
+
+### Step 6
+Click Verify.
+
+### Step 7
+Click Upload.
+
+---
 
 ## Expected Output
 
-- Rotating the potentiometer changes the LED blinking speed.
-- Higher potentiometer values produce slower blinking.
-- Lower potentiometer values produce faster blinking.
+- LED blinks continuously.
+- Rotating potentiometer changes blink speed.
+- Lower resistance → Faster blinking.
+- Higher resistance → Slower blinking.
+
+---
+
+## Troubleshooting Tips
+
+### 1. LED not blinking
+Check resistor and LED polarity.
+
+### 2. Potentiometer not affecting speed
+Verify middle pin is connected to A0.
+
+### 3. Upload failed
+Check COM port selection and USB cable connection.
+
+---
 
 ## Author
+
 Priyanshu Singh Bohra
 
-## Date
-05 July 2026
-fix: improve potentiometer mapping logic (Fixes #2)
+IIT Jammu Summer Internship 2026
+
+IoT, Robotics and Drones
