@@ -1,5 +1,9 @@
 # LED Blink with Potentiometer Control
 
+Tinkercad link-
+https://www.tinkercad.com/things/1iCxPJQKa3m-potentiometer?sharecode=aUW8fjXe2XdUgTx44Izi57uoDKwkyqhskV9TIUPJd3I
+
+
 ## Description
 This project demonstrates LED blinking using an ESP32 with speed control through a potentiometer.
 
