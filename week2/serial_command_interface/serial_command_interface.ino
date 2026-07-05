@@ -1,10 +1,11 @@
 /*
 Author: Priyanshu Singh Bohra
-Commit 1
 
+Commit 2
 Features:
 LED_ON
 LED_OFF
+BLINK_X
 */
 
 const int led = 2;
@@ -40,6 +41,30 @@ void loop() {
       digitalWrite(led, LOW);
 
       Serial.println("LED OFF");
+
+    }
+
+    else if (cmd.startsWith("BLINK_")) {
+
+      int count = cmd.substring(6).toInt();
+
+      if (count >= 1 && count <= 9) {
+
+        for (int i = 0; i < count; i++) {
+
+          digitalWrite(led, HIGH);
+          delay(500);
+
+          digitalWrite(led, LOW);
+          delay(500);
+
+        }
+
+        Serial.print("Blinked ");
+        Serial.print(count);
+        Serial.println(" times");
+
+      }
 
     }
 
