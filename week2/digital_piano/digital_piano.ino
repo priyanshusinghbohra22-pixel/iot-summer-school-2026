@@ -20,7 +20,18 @@ void setup() {
 
 void loop() {
 
-  if (digitalRead(BTN1) == LOW) {
+  // SOL chord
+  if (digitalRead(BTN1) == LOW &&
+      digitalRead(BTN2) == LOW) {
+
+    Serial.println("SOL");
+
+    ledcWriteTone(BUZZER, 392);
+
+  }
+
+  // DO
+  else if (digitalRead(BTN1) == LOW) {
 
     Serial.println("DO");
 
@@ -28,6 +39,7 @@ void loop() {
 
   }
 
+  // RE
   else if (digitalRead(BTN2) == LOW) {
 
     Serial.println("RE");
@@ -36,6 +48,7 @@ void loop() {
 
   }
 
+  // MI
   else if (digitalRead(BTN3) == LOW) {
 
     Serial.println("MI");
@@ -44,6 +57,7 @@ void loop() {
 
   }
 
+  // FA
   else if (digitalRead(BTN4) == LOW) {
 
     Serial.println("FA");
@@ -52,6 +66,7 @@ void loop() {
 
   }
 
+  // No button pressed
   else {
 
     ledcWriteTone(BUZZER, 0);
