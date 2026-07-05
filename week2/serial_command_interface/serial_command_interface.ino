@@ -1,14 +1,19 @@
 /*
 Author: Priyanshu Singh Bohra
+Date-05-07-2026
 
-Commit 2
+Commit 3
 Features:
 LED_ON
 LED_OFF
 BLINK_X
+STATUS
+RESET
 */
 
 const int led = 2;
+
+int blinkCount = 0;
 
 void setup() {
 
@@ -46,11 +51,11 @@ void loop() {
 
     else if (cmd.startsWith("BLINK_")) {
 
-      int count = cmd.substring(6).toInt();
+      blinkCount = cmd.substring(6).toInt();
 
-      if (count >= 1 && count <= 9) {
+      if (blinkCount >= 1 && blinkCount <= 9) {
 
-        for (int i = 0; i < count; i++) {
+        for (int i = 0; i < blinkCount; i++) {
 
           digitalWrite(led, HIGH);
           delay(500);
@@ -61,10 +66,40 @@ void loop() {
         }
 
         Serial.print("Blinked ");
-        Serial.print(count);
+        Serial.print(blinkCount);
         Serial.println(" times");
 
       }
+
+    }
+
+    else if (cmd == "STATUS") {
+
+      Serial.print("LED State: ");
+
+      if (digitalRead(led)) {
+
+        Serial.println("ON");
+
+      }
+
+      else {
+
+        Serial.println("OFF");
+
+      }
+
+      Serial.print("Blink Counter: ");
+
+      Serial.println(blinkCount);
+
+    }
+
+    else if (cmd == "RESET") {
+
+      blinkCount = 0;
+
+      Serial.println("Blink counter reset");
 
     }
 
