@@ -1,1 +1,1 @@
-
+![imagealt](https://github.com/priyanshusinghbohra22-pixel/iot-summer-school-2026/blob/be502fca12084a51cd0a326702b969f122be741f/IOT%20architecture%20diagram%20.jpeg)
