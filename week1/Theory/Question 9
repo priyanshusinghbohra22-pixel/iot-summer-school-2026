@@ -1,11 +1,11 @@
-Git clone -
+# Git clone -
 
 is used to create a complete copy of a remote repository on a local computer. It downloads all files, branches and commit history.
 It is generally used when working with a repository for the first time.
 
 
 
-Git fetch-
+# Git fetch-
 
 is used to download the latest changes from a remote repository without merging them into the current branch. It allows developers to review the changes before applying them manually.
 
@@ -13,7 +13,7 @@ is used to download the latest changes from a remote repository without merging 
 
 
 
-Git pull -
+# Git pull -
 
 is used to fetch the latest changes from the remote repository and automatically merge them into the current working branch. 
 It is commonly used to keep the local repository updated with the remote repository.
