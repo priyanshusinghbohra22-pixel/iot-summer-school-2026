@@ -1,1 +1,24 @@
+Q10. What is a .gitignore file? Write a .gitignore for an Arduino project that excludes compiled output files (.hex, .elf), OS-specific files (.DS_Store, Thumbs.db), 
+and IDE configuration folders (.vscode/, build/).
 
+
+
+Answer -
+
+.gitignore file is used to specify files and folders that Git should ignore and not track in the repository.
+It helps keep the repository clean by excluding generated files, temporary files, compiled outputs, operating system files, and IDE-specific configuration files.
+
+project -
+# Compiled output files
+*.hex
+*.elf
+
+# Build directory
+build/
+
+# VS Code settings
+.vscode/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
