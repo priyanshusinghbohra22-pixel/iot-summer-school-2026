@@ -1,96 +1,108 @@
-# Project 9: Stepper Motor Precision Positioner
+# Project 1: Smart Room Climate Monitor
 
 ## Overview
 
-This project implements a precision position control system for a 28BYJ-48 stepper motor using an Arduino Uno and ULN2003 driver. A potentiometer is used to set a target angle between 0° and 360°. Two push buttons control clockwise and anticlockwise movement, while a third button sets the current position as the logical home position.
+The Smart Room Climate Monitor is an ESP32-based system that continuously monitors room temperature and humidity using a DHT11 sensor. The readings are displayed on a 0.96-inch OLED display.
 
-An OLED display shows the current angle, target angle, direction, and current step position.
+When the temperature exceeds 38°C or the humidity exceeds 80%, the system activates a Red LED and a buzzer to indicate an alert condition. Under normal conditions, the Green LED remains ON.
+
+The system also displays a comfort status and logs sensor readings to the Serial Monitor in CSV format.
+
+---
 
 ## Components Required
 
-- Arduino Uno R3
-- 28BYJ-48 Stepper Motor
-- ULN2003 Driver Board
-- 10kΩ Potentiometer
-- 3 Push Buttons
-- 0.96" I2C OLED Display
-- LED
-- 220Ω Resistor
+- ESP32 Dev Board
+- DHT11 Temperature and Humidity Sensor
+- 0.96" SSD1306 I2C OLED Display
+- Active Buzzer
+- Red LED
+- Green LED
+- 220Ω Resistors
+- 10kΩ Resistor
 - Breadboard
 - Jumper Wires
+- USB Cable
 
-## Pin Connections
+---
 
-| Component | Arduino Pin |
+## Wiring Connections
+
+| Component | Connection |
 |---|---|
-| ULN2003 IN1 | Pin 8 |
-| ULN2003 IN2 | Pin 9 |
-| ULN2003 IN3 | Pin 10 |
-| ULN2003 IN4 | Pin 11 |
-| Potentiometer | A0 |
-| Clockwise Button | Pin 2 |
-| Anticlockwise Button | Pin 3 |
-| Home Button | Pin 4 |
-| Position LED | Pin 5 |
-| OLED SDA | A4 |
-| OLED SCL | A5 |
+| DHT11 VCC | ESP32 3.3V |
+| DHT11 GND | ESP32 GND |
+| DHT11 DATA | GPIO4 |
+| OLED VCC | ESP32 3.3V |
+| OLED GND | ESP32 GND |
+| OLED SDA | GPIO21 |
+| OLED SCL | GPIO22 |
+| Red LED | GPIO25 through 220Ω resistor |
+| Green LED | GPIO26 through 220Ω resistor |
+| Buzzer (+) | GPIO27 |
+| Buzzer (-) | GND |
 
-## Working
+The DHT11 DATA pin uses a 10kΩ pull-up resistor connected to 3.3V.
 
-The potentiometer value is read using the Arduino analog input and mapped to a target angle between 0° and 360°.
+---
 
-The Clockwise button rotates the stepper motor by 45° in the clockwise direction. The Anticlockwise button rotates it by 45° in the opposite direction.
+## Libraries Used
 
-For the 4096-step-per-revolution model used in this project:
+- DHTesp
+- Adafruit GFX Library
+- Adafruit SSD1306 Library
+- Wire Library
 
-- 360° = 4096 steps
-- 45° = 512 steps
+> Library versions depend on the versions installed in the Arduino IDE or simulation environment used for the project.
 
-The program keeps track of the motor position using the `currentSteps` variable. The current angle is calculated from this step position.
+---
 
-The Home button sets `currentSteps` to zero without physically rotating the motor. Therefore, the motor's current position becomes the new logical home position.
+## Working Principle
+
+The ESP32 reads temperature and humidity values from the DHT11 sensor every 2 seconds.
 
 The OLED displays:
 
-- Current Angle
-- Target Angle
-- Required Direction
-- Current Step Position
+- Temperature in °C
+- Humidity in %
+- Comfort status
 
-The LED turns ON when the current position is very close to the target position.
+The alert condition is:
 
-## Position Calculation
+- Temperature > 38°C, OR
+- Humidity > 80%
 
-The current motor angle is calculated using:
+When an alert condition occurs:
 
-Current Angle = (Current Steps × 360) / 4096
+- Red LED turns ON
+- Green LED turns OFF
+- Buzzer is activated
 
-The number of steps required to reach the target is calculated using:
+Under normal conditions:
 
-Steps Needed = (Target Angle - Current Angle) × 4096 / 360
+- Green LED turns ON
+- Red LED remains OFF
+- Buzzer remains OFF
 
-A positive value indicates clockwise movement, while a negative value indicates anticlockwise movement.
+The comfort status is displayed as one of the following:
 
-## Features
+- COOL
+- COMFORT
+- HOT
+- DANGER
 
-- Precision stepper motor position tracking
-- 0°–360° target selection using potentiometer
-- Clockwise and anticlockwise manual control
-- 45° movement per button command
-- Logical Home position setting
-- Real-time OLED display
-- Target position LED indicator
+The sensor readings are also logged to the Serial Monitor in CSV format every 5 seconds.
 
-## Simulation / Hardware Note
+---
 
-The exact 28BYJ-48 stepper motor with ULN2003 driver was not available in the simulation environment used for this project. The required hardware components were also unavailable for physical implementation at the time of submission. Therefore, the control logic and complete source code were developed according to the specified hardware configuration, but the exact hardware simulation could not be demonstrated.
+## Serial Monitor Output
 
-## Applications
+The output is displayed in the following CSV format:
 
-This project demonstrates the basic position-control principles used in:
-
-- CNC machines
-- 3D printers
-- Robotic arms
-- Camera positioning systems
-- Automated mechanical systems
+```text
+millis,temp,humidity,status
+5000,28.3,65.0,COMFORT
+10000,29.1,67.0,COMFORT
+15000,39.2,70.0,DANGER
+20000,31.5,82.0,DANGER
+25000,27.8,60.0,COOL
